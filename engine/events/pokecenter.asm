@@ -62,9 +62,6 @@ DisplayPokemonCenterDialogue_::
 .playerPikachuNotOnScreen
 	lb bc, 1, 8
 	call Func_6ebb
-	ld c, 30
-	call DelayFrames
-	farcall AnimateHealingMachine ; do the healing machine animation
 	predef HealParty
 	xor a
 	ld [wAudioFadeOutControl], a

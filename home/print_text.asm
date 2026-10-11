@@ -5,6 +5,10 @@ PrintLetterDelay::
 	ld a, [wd730]
 	bit 6, a
 	ret nz
+	ld a, [wOptions]
+	and $f
+	cp TEXT_DELAY_FAST
+	ret z
 	ld a, [wLetterPrintingDelayFlags]
 	bit 1, a
 	ret z

@@ -53,38 +53,19 @@ SlidePlayerAndEnemySilhouettesOnScreen:
 	xor a
 	ldh [hTileAnimations], a
 	ldh [hSCY], a
+	ldh [hSCX], a
 	dec a
 	ld [wUpdateSpritesEnabled], a
 	call Delay3
 	xor a
 	ldh [hAutoBGTransferEnabled], a
-	ld b, $70
-	ld c, $90
-	ld a, c
-	ldh [hSCX], a
-	call DelayFrame
-	ld a, %11100100 ; inverted palette for silhouette effect
+	ld a, %11100100
 	ldh [rBGP], a
 	ldh [rOBP0], a
 	ldh [rOBP1], a
 	call UpdateGBCPal_BGP
 	call UpdateGBCPal_OBP0
 	call UpdateGBCPal_OBP1
-.slideSilhouettesLoop ; slide silhouettes of the player's pic and the enemy's pic onto the screen
-	ld h, b
-	ld l, $40
-	call SetScrollXForSlidingPlayerBodyLeft ; begin background scrolling on line $40
-	inc b
-	inc b
-	ld h, $0
-	ld l, $60
-	call SetScrollXForSlidingPlayerBodyLeft ; end background scrolling on line $60
-	call SlidePlayerHeadLeft
-	ld a, c
-	ldh [hSCX], a
-	dec c
-	dec c
-	jr nz, .slideSilhouettesLoop
 	ld a, $1
 	ldh [hAutoBGTransferEnabled], a
 	ld a, $31
@@ -248,8 +229,8 @@ StartBattle:
 	ld [wBattleMonSpecies2], a
 	call LoadScreenTilesFromBuffer1
 	hlcoord 1, 5
-	ld a, $9
-	call SlideTrainerPicOffScreen
+	lb bc, 7, 9
+	call ClearScreenArea
 	call SaveScreenTilesToBuffer1
 	ld a, [wWhichPokemon]
 	ld c, a
@@ -1837,17 +1818,14 @@ SendOutMon:
 	jr c, .starterPikachu
 	ld a, $1
 	ldh [hWhoseTurn], a
-	ld a, POOF_ANIM
-	call PlayMoveAnimation
 	hlcoord 4, 11
 	predef AnimateSendingOutMon
 	jr .playRegularCry
 .starterPikachu
 	xor a
 	ldh [hWhoseTurn], a
-	ld a, $1
-	ldh [hAutoBGTransferEnabled], a
-	callfar StarterPikachuBattleEntranceAnimation
+	hlcoord 4, 11
+	predef AnimateSendingOutMon
 	callfar IsPlayerPikachuAsleepInParty
 	ld e, $24
 	jr c, .asm_3cd81

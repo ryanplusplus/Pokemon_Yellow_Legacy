@@ -215,24 +215,7 @@ AnimateSendingOutMon:
 	jr z, .notInBattle
 	add b
 	ld [hl], a
-	call Delay3
-	ld bc, -(SCREEN_WIDTH * 2 + 1)
-	add hl, bc
-	ld a, 1
-	ld [wDownscaledMonSize], a
-	lb bc, 3, 3
-	predef CopyDownscaledMonTiles
-	ld c, 4
-	call DelayFrames
-	ld bc, -(SCREEN_WIDTH * 2 + 1)
-	add hl, bc
-	xor a
-	ld [wDownscaledMonSize], a
-	lb bc, 5, 5
-	predef CopyDownscaledMonTiles
-	ld c, 5
-	call DelayFrames
-	ld bc, -(SCREEN_WIDTH * 2 + 1)
+	ld bc, -(SCREEN_WIDTH * 6 + 3)
 	jr .next
 .notInBattle
 	ld bc, -(SCREEN_WIDTH * 6 + 3)

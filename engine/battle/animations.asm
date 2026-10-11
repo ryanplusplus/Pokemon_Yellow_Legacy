@@ -488,6 +488,7 @@ ShareMoveAnimations:
 PlayApplyingAttackAnimation:
 ; Generic animation that shows after the move's individual animation
 ; Different animation depending on whether the move has an additional effect and on whose turn it is
+	ret
 	vc_hook Stop_reducing_move_anim_flashing_Self_Destruct
 	ld a, [wAnimationType]
 	and a
