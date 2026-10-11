@@ -516,7 +516,7 @@ Func_fc7aa:
 	jp z, Func_fca0a
 	ld a,[hJoyHeld]
 	and B_BUTTON
-	jp nz, FastPikachuFollow
+	jp z, FastPikachuFollow
 	call AreThereAtLeastTwoStepsInPikachuFollowCommandBuffer
 	jp c, FastPikachuFollow
 	jp NormalPikachuFollow
