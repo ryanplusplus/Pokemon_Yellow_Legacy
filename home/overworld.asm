@@ -269,7 +269,7 @@ OverworldLoopLessDelay::
 	; Add running shoes
 	ld a, [hJoyHeld] ; Check what buttons are being pressed
 	and B_BUTTON ; Are you holding B?
-	jr z, .notRunning ; If you aren't holding B, skip ahead to step normally.
+	jr nz, .notRunning ; If you aren't holding B, skip ahead to step normally.
 .surfFaster
 	call DoBikeSpeedup ; Make you go faster if you were holding B
 .notRunning ; Normal code resumes here
@@ -379,7 +379,7 @@ DoBikeSpeedup::
 	;and B_BUTTON ; Are you holding B?
 	;jr z, .notRunning ; If you aren't holding B, skip ahead to step normally.
 	;jp .goFaster ; Make you go faster if you were holding B
-;.notRunning 
+;.notRunning
 	;ld a, [wWalkBikeSurfState]
 	;dec a ; riding a bike?
 	;ret nz

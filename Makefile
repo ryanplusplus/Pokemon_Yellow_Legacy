@@ -29,7 +29,7 @@ else
 SHA1 := sha1sum
 endif
 
-RGBDS ?=
+RGBDS ?= rgbds-0.6.1-linux-x86_64/
 RGBASM  ?= $(RGBDS)rgbasm
 RGBFIX  ?= $(RGBDS)rgbfix
 RGBGFX  ?= $(RGBDS)rgbgfx
@@ -45,6 +45,9 @@ RGBLINK ?= $(RGBDS)rgblink
 .PHONY: all yellow yellow_debug clean tidy compare tools
 
 all: $(roms)
+	@mkdir -p build
+	@mv pokeyellow.gbc "build/Pokemon - Yellow Legacy.gb"
+
 yellow:       pokeyellow.gbc
 yellow_debug: pokeyellow_debug.gbc
 yellow_vc:    pokeyellow.patch
