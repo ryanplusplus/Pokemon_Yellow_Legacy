@@ -71,14 +71,14 @@ BattleTransition:
 ; bit 1: set if enemy is at least 3 levels higher than player
 ; bit 2: set if dungeon map
 BattleTransitions:
-	dw BattleTransition_DoubleCircle      ; %000
-	dw BattleTransition_Spiral            ; %001
+	dw BattleTransition_Circle            ; %000
+	dw BattleTransition_Circle            ; %001
 	dw BattleTransition_Circle            ; %010
-	dw BattleTransition_Spiral            ; %011
-	dw BattleTransition_HorizontalStripes ; %100
-	dw BattleTransition_Shrink            ; %101
-	dw BattleTransition_VerticalStripes   ; %110
-	dw BattleTransition_Split             ; %111
+	dw BattleTransition_Circle            ; %011
+	dw BattleTransition_Circle            ; %100
+	dw BattleTransition_Circle            ; %101
+	dw BattleTransition_Circle            ; %110
+	dw BattleTransition_Circle            ; %111
 
 GetBattleTransitionID_WildOrTrainer:
 	ld a, [wCurOpponent]
